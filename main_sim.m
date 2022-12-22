@@ -1,5 +1,6 @@
 clear; close all;
-
+addpath('C:\Users\mungam\Documents\GitHub\frost-dev')
+frost_addpath();
 %% defining needed variables
 maxangle=pi/8;
 
@@ -158,6 +159,7 @@ dq0 = [dq0_first;dq0_last];
 x0 = [q0; dq0];
 
 %% Solve
+
 logger = system.simulate(0, x0, 3, [],'NumCycle',2);
 
 

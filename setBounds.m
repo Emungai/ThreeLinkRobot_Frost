@@ -56,48 +56,48 @@
 
 % Set Bounds 
 model_bounds = model.getLimits();
-model_bounds.states.x.lb = [ -10, 0.75, -pi/8, 1, 1];
-model_bounds.states.x.ub = [10, 10, pi/8, 5, 5];
-model_bounds.states.dx.lb = -100*ones(1,5);
-model_bounds.states.dx.ub = 100*ones(1,5);
+% model_bounds.states.x.lb = [ -10, 0.75, -pi/8, 1, 1];
+% model_bounds.states.x.ub = [10, 10, pi/8, 5, 5];
+% model_bounds.states.dx.lb = -100*ones(1,5);
+% model_bounds.states.dx.ub = 100*ones(1,5);
 bounds = struct();
 
 % Right Stance
-bounds.RightStance = model_bounds;
-bounds.RightStance.time.t0.lb = 0;
-bounds.RightStance.time.t0.ub = 0;
-bounds.RightStance.time.t0.x0 = 0;
+bounds.Swing = model_bounds;
+bounds.Swing.time.t0.lb = 0;
+bounds.Swing.time.t0.ub = 0;
+bounds.Swing.time.t0.x0 = 0;
 
-bounds.RightStance.time.tf.lb = 0.6;
-bounds.RightStance.time.tf.ub = 1;
-bounds.RightStance.time.tf.x0 = 1;
+bounds.Swing.time.tf.lb = 0.6;
+bounds.Swing.time.tf.ub = 1;
+bounds.Swing.time.tf.x0 = 1;
 
-bounds.RightStance.time.duration.lb = 0.6;
-bounds.RightStance.time.duration.ub = 1;
-bounds.RightStance.time.duration.x0 = 1;
+bounds.Swing.time.duration.lb = 0.6;
+bounds.Swing.time.duration.ub = 1;
+bounds.Swing.time.duration.x0 = 1;
 
-bounds.RightStance.inputs.ConstraintWrench.fRightToe.lb = -10000;
-bounds.RightStance.inputs.ConstraintWrench.fRightToe.ub = 10000;
-bounds.RightStance.inputs.ConstraintWrench.fRightToe.x0 = 100;
+bounds.Swing.inputs.ConstraintWrench.fRightToe.lb = -10000;
+bounds.Swing.inputs.ConstraintWrench.fRightToe.ub = 10000;
+bounds.Swing.inputs.ConstraintWrench.fRightToe.x0 = 100;
 
-bounds.RightStance.inputs.Control.u.lb = -100*ones(2,1);
-bounds.RightStance.inputs.Control.u.ub = 100*ones(2,1);
-bounds.RightStance.inputs.Control.u.x0 = zeros(2,1);
+bounds.Swing.inputs.Control.u.lb = -100*ones(2,1);
+bounds.Swing.inputs.Control.u.ub = 100*ones(2,1);
+bounds.Swing.inputs.Control.u.x0 = zeros(2,1);
 
-bounds.RightStance.params.pRightToe.lb = -0*ones(3,1);
-bounds.RightStance.params.pRightToe.ub = 0*ones(3,1);
-bounds.RightStance.params.pRightToe.x0 = zeros(3,1);
+bounds.Swing.params.pStanceFootEnd.lb = -0*ones(3,1);
+bounds.Swing.params.pStanceFootEnd.ub = 0*ones(3,1);
+bounds.Swing.params.pStanceFootEnd.x0 = zeros(3,1);
 
-bounds.RightStance.params.atimevc.lb = -10*ones(6*2,1);
-bounds.RightStance.params.atimevc.ub = 10*ones(6*2,1);
-bounds.RightStance.params.atimevc.x0 = zeros(6*2,1);
+bounds.Swing.params.atimevc.lb = -10*ones(6*2,1);
+bounds.Swing.params.atimevc.ub = 10*ones(6*2,1);
+bounds.Swing.params.atimevc.x0 = zeros(6*2,1);
 
-bounds.RightStance.params.pVconstraint.lb = [-pi/4; 0];
-bounds.RightStance.params.pVconstraint.ub = [0; pi/4];
-bounds.RightStance.params.pVconstraint.x0 = [-pi/8; pi/8];
+bounds.Swing.params.pVConstraint.lb = [0; -pi/4];
+bounds.Swing.params.pVConstraint.ub = [pi/4; 0];
+bounds.Swing.params.pVConstraint.x0 = [pi/8; -pi/8];
 % 
-bounds.RightStance.time.kp = 100;
-bounds.RightStance.time.kd = 20;
+bounds.Swing.time.kp = 100;
+bounds.Swing.time.kd = 20;
 
 % Right Impact
 bounds.SwingLegImpact = model_bounds;

@@ -1,0 +1,78 @@
+<robot name="Three_link_walker">
+  <link name="stance_leg">
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+	<visual>
+      <origin xyz="0 0 0.5"/>
+      <geometry>
+        <cylinder length="1" radius="0.025"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+  <link name="swing_leg">
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <mass value="5"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+	<visual>
+      <origin xyz="0 0 0.5"/>
+      <geometry>
+        <cylinder length="1" radius="0.025"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+  </link>
+  <link name="torso">
+    <inertial>
+      <origin xyz="0 0 0.4" rpy="0 0 0"/>
+      <mass value="25"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0.47" iyz="0" izz="0"/>
+    </inertial>
+	<visual>
+      <origin xyz="0 0 0.4"/>
+      <geometry>
+        <cylinder length="0.8" radius="0.025"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+   <joint name="joint3" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <parent link="torso"/>
+    <child link="swing_leg"/>
+  </joint>
+    <joint name="joint2" type="revolute">
+    <origin xyz="0 0 1" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <parent link="torso"/>
+    <child link="stance_leg"/>
+  </joint>
+
+<transmission name="joint3_trans" type="pr2_mechanism_model/SimpleTransmission">
+	<joint name="joint3"/>
+	<actuator name="joint3_motor"/>
+	<mechanicalReduction>1</mechanicalReduction>
+    <motorInertia>0</motorInertia>
+</transmission>
+
+<transmission name="joint2_trans" type="pr2_mechanism_model/SimpleTransmission">
+	<joint name="joint2"/>
+	<actuator name="joint2_motor"/>
+	<mechanicalReduction>1</mechanicalReduction>
+    <motorInertia>0</motorInertia>
+</transmission>
+ 
+</robot>
